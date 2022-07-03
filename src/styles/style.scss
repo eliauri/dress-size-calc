@@ -1,0 +1,22 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+.App{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    form{
+        .form__wrapper{
+            display: flex;
+            align-content: center;
+            flex-direction: column;
+            width: 500px;
+            padding: 20px 30px;
+        }
+        select{
+            // display: block;
+        }
+        display: flex;
+        justify-content: center;
+        margin-top: 200px;
+    }
+}
