@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Reply } from './components/Reply';
 import { SelectComponent } from './components/SelectComponent';
+import { InputComponent } from './components/InputComponent';
 import './styles/style.scss';
 
 
@@ -25,7 +26,11 @@ function App() {
   function changeSelect(e){
     setSelect(e.value);
   }
-
+  function clear(){
+    setСhest(0);
+    setHeight(0);
+    setWaist(0);
+  }
   useEffect(() => {
     let array = Sizes[select];
     for (let index = 0; index < array.length; index++) {
@@ -54,48 +59,34 @@ const Sizes = {
   ]
 }
 
-
-
   return (
     <div className="App container">
       <form className=''>
         <div className="form__wrapper z-depth-4">
           <SelectComponent select={select} selectChange={changeSelect}></SelectComponent>
-          <label htmlFor="height">
-            Ваш рост:
-            <input type="number"
-              id='height'
-              value={height}
-              placeholder = "0"
-              onChange={(e) => {
-                changeHeight(e.target);
-              }}
-            />
-          </label>
-          <label htmlFor="chest">
-           Обхват груди:
-            <input type="number"
-              id='chest'
-              value={chest}
-              placeholder = "0"
-              onChange={(e) => {
-                changeСhest(e.target);
-              }}
-            />
-          </label>
-          <label htmlFor="waist">
-           Обхват талии:
-            <input type="number"
-              id='waist'
-              value={waist}
-              placeholder = "0"
-              onChange={(e) => {
-                changeWaist(e.target);
-              }}
-            />
-          </label>
-          {(height && chest && waist) && <Reply size={size}/>}
-         
+          <InputComponent
+              name = 'height'
+              label = "Ваш рост:"
+              value = {height}
+              onChange={changeHeight}
+          />
+         <InputComponent
+              name = 'chest'
+              label = "Обхват груди:"
+              value = {chest}
+              onChange={changeСhest}
+          />
+         <InputComponent
+              name = 'waist'
+              label = "Обхват талии:"
+              value = {waist}
+              onChange={changeWaist}
+          />
+            <div className="row">
+          {(height && chest && waist) ? <Reply size={size} className="col s8"/> : ''}
+        
+          <button onClick={clear} className="col s4 waves-effect btn">Очистить</button>
+          </div>
         </div>
       </form >
      
